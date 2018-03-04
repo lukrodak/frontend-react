@@ -1,3 +1,8 @@
 .addButton, .saveButton {
     width: 100px;
 }
+
+.warning {
+    border-color: #ff0000 !important;
+    box-shadow: 0 0 5px rgba(236, 9, 9, 0.4) !important;
+}

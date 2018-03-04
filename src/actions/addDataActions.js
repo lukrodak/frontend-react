@@ -12,7 +12,7 @@ import {
     DISABLE_FIELD,
     MIGRATE_DATA,
     REMOVE_LAST,
-    SAVE_UPDATED
+    ADD_DATA_FAIL
 } from './types';
 
 
@@ -92,33 +92,15 @@ export function saveToDB(newData) {
     }
 }
 
-export function saveUpdatedDataToDB(updatedData) {
-    if (updatedData.length === 0) {
-        return {
-            type: SAVE_UPDATED
-        }
-    } else {
-        return (dispatch) => {
-            dispatch({type: SAVE_UPDATED});
-            dispatch({type: DISABLE_FIELD, payload: true});
-            saveUpdated(updatedData, dispatch);
-        }
-    }
-}
-
-const saveUpdated = (updatedData, dispatch) => {
-    axios.patch(url, updatedData).then((response) => {
-        console.log('update data');
-        console.log(response);
-        dispatch({type: SAVE_DATA});
-    });
-}
-
-
 const saveData = (tab, dispatch) => {
     axios.post(url, tab).then((response) => {
-        dispatch({type: MIGRATE_DATA, payload: response.data});
-        dispatch({type: SAVE_DATA});
+        console.log(response.status);
+        if (response.status === 200) {
+            dispatch({type: MIGRATE_DATA, payload: response.data});
+            dispatch({type: SAVE_DATA});
+        }
+    }).catch((error) => {
+        dispatch({type: ADD_DATA_FAIL});
     });
 };
 

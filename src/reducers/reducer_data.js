@@ -7,7 +7,11 @@ import {
     UPDATE_OLD_FIELD,
     ADD_OLD_VALIDATED,
     REMOVE_OLD_VALIDATED,
-    SAVE_UPDATED
+    SAVE_UPDATED,
+    UPDATE_DATA_FAIL,
+    ADD_DATA_FAIL,
+    DELETE_DATA_FAIL,
+    DELETE_ONE
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -25,9 +29,13 @@ export default function (state = INITIAL_STATE, action) {
             return {...state, data: action.payload, loading: false};
         case GET_DATA_FAIL:
             return {...state, error: 'Cannot get data from DB', loading: false};
+        case UPDATE_DATA_FAIL:
+            return {...state, error: 'Cannot update data', loading: false};
+        case ADD_DATA_FAIL:
+            return {...state, error: 'Cannot add data', loading: false};
+        case DELETE_DATA_FAIL:
+            return {...state, error: 'Cannot delete data', loading: false};
         case MIGRATE_DATA:
-            console.log('action.payload');
-            console.log(action.payload);
             return {...state, data: state.data.concat(action.payload)};
         case UPDATE_OLD_FIELD:
             const _id = action.payload.val;
@@ -55,6 +63,12 @@ export default function (state = INITIAL_STATE, action) {
             return {...state}
         case SAVE_UPDATED:
             return {...state, updated: [], validatedOld: []}
+        case DELETE_ONE:
+            const id = action.payload;
+            _.remove(state.data, {
+                _id: id
+            });
+            return {...state}
         default:
             return state;
     }

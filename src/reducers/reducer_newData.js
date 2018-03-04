@@ -1,5 +1,4 @@
 import _ from 'lodash';
-// import axios from 'axios';
 import {
     ADD_ROW,
     REMOVE_ROW,
@@ -11,7 +10,6 @@ import {
     DISABLE_FIELD,
     REMOVE_LAST
 } from '../actions/types';
-
 
 const INITIAL_STATE = {
     dataToSave: [],

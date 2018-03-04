@@ -13,10 +13,15 @@ export const ENABLE_FIELD = 'enable_field';
 export const DISABLE_FIELD = 'disable_field';
 export const MIGRATE_DATA = 'migrate_data';
 export const REMOVE_LAST = 'remove_last';
+export const ADD_DATA_FAIL = 'add_data_fail';
 
 //update Data
 export const UPDATE_OLD_FIELD = 'update_old_field';
-export const ADD_UPDATED = 'add_updated';
 export const ADD_OLD_VALIDATED = 'add_old_validated';
 export const REMOVE_OLD_VALIDATED = 'remove_old_validated';
 export const SAVE_UPDATED = 'save_updated';
+export const UPDATE_DATA_FAIL = 'update_data_fail';
+
+//delete Data
+export const DELETE_ONE = 'delete_one';
+export const DELETE_DATA_FAIL = 'delete_data_fail';
